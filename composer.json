@@ -1,0 +1,15 @@
+{
+    "name": "notas/ejemplos_php",
+    "autoload": {
+        "psr-4": {
+            "Notas\\EjemplosPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jorge L. Morales",
+            "email": "jorgeluismreyes@gmail.com"
+        }
+    ],
+    "require": {}
+}
