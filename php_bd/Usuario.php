@@ -29,8 +29,18 @@ require_once("Autoload.php");
             } else {
                 echo "Error de Conexión";
             }
-            
 
+        }
+
+        public function getUsuarios() {
+            if ($this->connect) {
+
+                $sql = "SELECT * FROM usuario";
+                $result = $this->connect->query($sql);
+                $request = $result->fetchAll(PDO::FETCH_ASSOC);
+                return $request;
+            }
+            
         }
     }
 
