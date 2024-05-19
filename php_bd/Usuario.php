@@ -42,6 +42,46 @@ require_once("Autoload.php");
             }
             
         }
+
+        public function updateUser(int $id, string $nombre, string $telefono, string $email)
+        {
+            $this->nombre = $nombre;
+            $this->telefono = $telefono;
+            $this->email = $email;
+            $sql = "UPDATE usuario SET nombre = :nombre, telefono = :telefono, email = :email WHERE id = :id";
+            if($this->connect)
+            {
+                $update = $this->connect->prepare($sql);
+                $array = array(":nombre" => $this->nombre, ":telefono" => $this->telefono, ":email" => $this->email, ":id" => $id);
+                $response = $update->execute($array);
+                return $response;
+            }
+        }
+
+        public function getUsuario(int $id)
+        {
+            $sql = "SELECT * FROM usuario WHERE id = :id";
+            if($this->connect)
+            {
+                $getUser = $this->connect->prepare($sql);
+                $array = array(":id" => $id);
+                $getUser->execute($array);
+                $request = $getUser->fetch(PDO::FETCH_ASSOC);
+                return $request;
+            }
+        }
+
+        public function deleteUsuario(int $id)
+        {
+            $sql = "DELETE FROM usuario WHERE id = :id";
+            if($this->connect)
+            {
+                $delete = $this->connect->prepare($sql);
+                $array = array(":id" => $id);
+                $response = $delete->execute($array);
+                return $response;
+            }
+        }
     }
 
 ?>
